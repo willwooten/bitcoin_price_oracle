@@ -1,12 +1,11 @@
 import argparse
-from asyncio import create_task, gather, run
+from asyncio import run
 from datetime import datetime, timedelta
 from time import time
-from typing import List
 
 from src.config import BitcoinConfig
 from src.daily_price import BitcoinDailyPrice
-from src.helpers import is_valid_date, format_date
+from src.helpers import format_date, is_valid_date
 from src.logger import init_logger
 from src.rpc import BitcoinRPCClient
 
