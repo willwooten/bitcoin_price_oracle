@@ -11,7 +11,7 @@ It is an adaptation of the script written by [SteveSimple](https://twitter.com/S
     * this version: 30.9 seconds
 * Uses asynchronous RPC calls when possible.
 * Gets RPC config from bitcoin.conf file if available in default ~/.bitcoin folder. Accepts environment variables as alternative. 
-* Args allow for getting a range of dates.
+* Args allow for getting a range of dates or a specific date.
 * Creates RPC class for async requests to the node.
 * Creates classes for BlockOscillator, PriceBins, and Stencil
 * Add GitHub Workflow with linting.
