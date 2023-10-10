@@ -14,6 +14,7 @@ It is an adaptation of the script written by [SteveSimple](https://twitter.com/S
 * Args allow for getting a range of dates.
 * Creates RPC class for async requests to the node.
 * Creates classes for BlockOscillator, PriceBins, and Stencil
+* Add GitHub Workflow with linting.
 
 ## bitcoin.conf
 In order to run the script successfully your bitcoin.conf file will need additional settings to handle the amount of async requests on the node.
