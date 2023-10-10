@@ -17,19 +17,6 @@ class BitcoinConfig:
     This class parses the bitcoin.conf file and extracts relevant RPC-related
     configuration options. It generates the appropriate options to be used
     with bitcoin-cli commands.
-
-    :param folder: The folder where the bitcoin.conf file is located
-        (default is ".bitcoin").
-    :type folder: str
-
-    :param conf_file_name: The name of the bitcoin.conf file
-        (default is "bitcoin.conf").
-    :type conf_file_name: str
-
-    :Example:
-        >>> config = BitcoinConfig()
-        >>> rpc_options = config.generate_options()
-        >>> print(rpc_options)
     """
 
     def __init__(self, conf_path: str = None):
@@ -37,7 +24,7 @@ class BitcoinConfig:
         Initialize the BitcoinConfig instance.
 
         :param conf_path: The path where the bitcoin.conf file is located
-            (default is None - "home/.bitcoin/bitcoin.conf").
+            (default is None - "~/.bitcoin/bitcoin.conf").
         :type conf_path: str
         """
         if not conf_path:
