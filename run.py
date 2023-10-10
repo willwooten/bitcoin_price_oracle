@@ -1,3 +1,4 @@
+"""Main entry point for price estimation."""
 from argparse import ArgumentParser
 from asyncio import run
 from datetime import datetime, timedelta
@@ -13,7 +14,35 @@ logger = init_logger("bitcoin_price_oracle")
 
 
 async def main():
-    # Create an ArgumentParser object
+    """
+    Estimate function for Bitcoin prices.
+
+    This asynchronous function parses command-line arguments to determine the
+    dates for which Bitcoin price estimates are to be generated. It creates an
+    ArgumentParser object and defines arguments for start date, end date, and
+    specific date. It then processes the arguments, validates the dates, and
+    generates a list of dates based on the provided input. Finally, it iterates
+    through the dates and triggers the estimation of Bitcoin prices for each date.
+
+    Note: The provided dates must be in the format YYYY-MM-DD.
+
+    Usage:
+    1. To estimate the price for a specific date:
+       `python script.py -d YYYY-MM-DD`
+
+    2. To estimate the price for a range of dates:
+       `python script.py -s YYYY-MM-DD -e YYYY-MM-DD`
+
+    3. To estimate the price for the prior day:
+       `python script.py`
+
+    The resulting price estimates are logged.
+
+    TODO: Due to limitations in node capacity for handling requests, parallel
+    execution for multiple dates is temporarily disabled.
+
+    :raises: Exception if an invalid date format is provided.
+    """
     parser = ArgumentParser()
 
     # Add an argument flag
