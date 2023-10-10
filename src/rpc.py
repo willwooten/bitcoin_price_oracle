@@ -98,7 +98,7 @@ class BitcoinRPCClient:
         response_bytes = await process.stdout.read()
         return response_bytes
 
-    async def get_block_count(self):
+    async def get_block_count(self) -> int:
         """
         Get the current block count.
 
