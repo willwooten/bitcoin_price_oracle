@@ -72,11 +72,9 @@ class BitcoinRPCClient:
         :type traceback: traceback or None
         """
         if exc_type:
-            raise RPCException(f"RPC call failed...")
+            raise RPCException("RPC call failed...")
 
-    @backoff.on_exception(
-        backoff.expo, RPCException(f"RPC call failed..."), max_tries=5
-    )
+    @backoff.on_exception(backoff.expo, RPCException("RPC call failed..."), max_tries=5)
     async def _get_rpc_response(self, *args: List[str]) -> bytes:
         """
         Execute a bitcoin-cli command and return the response.
@@ -191,6 +189,15 @@ class BitcoinRPCClient:
         )
 
     async def get_blocks(self, block_hashes: List[str]) -> List[Dict]:
+        """
+        Get block information for a list of block hashes.
+
+        :param block_hashes: A list of block hashes for which block
+            information is requested.
+        :type block_hashes: list[str]
+        :return: A list of dictionaries containing block information.
+        :rtype: list[dict]
+        """
         return await gather(
             *[create_task(self.get_block(bhash)) for bhash in block_hashes]
         )
