@@ -37,6 +37,7 @@ Prior to running the program, you must have [Bitcoin Core](https://github.com/bi
 - Run the script:
   - `python run.py` will provide estimate for previous day.
   - If you want a range of dates: `python run.py --start 2023-01-01 --end 2023-01-07`
+  - If you want a specific date: `python run.py --date 2023-01-06`
 
 ## config.py
 The config.py module attempts to read the node configuration directly from the bitcoin.conf file itself. If not available (i.e. not in the default ~/.bitcoin folder or path is not provided in code), it checks for the necessary configs in environment variables.
