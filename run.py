@@ -1,4 +1,4 @@
-import argparse
+from argparse import ArgumentParser
 from asyncio import run
 from datetime import datetime, timedelta
 from time import time
@@ -14,7 +14,7 @@ logger = init_logger("bitcoin_price_oracle")
 
 async def main():
     # Create an ArgumentParser object
-    parser = argparse.ArgumentParser()
+    parser = ArgumentParser()
 
     # Add an argument flag
     parser.add_argument(
