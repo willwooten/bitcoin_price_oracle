@@ -18,22 +18,33 @@ async def main():
 
     # Add an argument flag
     parser.add_argument(
-        "-s", "--start", type=str, help="start date for price history (YYYY-MM-DD)"
+        "-s", "--start", type=str, help="start date for price estimate (YYYY-MM-DD)"
     )
     parser.add_argument(
-        "-e", "--end", type=str, help="end date for price history (YYYY-MM-DD)"
+        "-e", "--end", type=str, help="end date for price estimate (YYYY-MM-DD)"
+    )
+    parser.add_argument(
+        "-d", "--date", type=str, help="specific date for price estimate (YYYY-MM-DD)"
     )
 
     # Parse the command-line arguments
     args = parser.parse_args()
 
-    # Check if the flag was provided
-    if args.start and args.end:
+    # if only want a single date
+    if args.date:
+        if is_valid_date(args.date):
+            logger.info("Price estimate date set: %s", args.date)
+            date_index = [args.date]
+        else:
+            logger.error("Please provide date in the format YYYY-MM-DD.")
+
+    # Check if the flag was provided for range of dates
+    elif args.start and args.end:
         if is_valid_date(args.start) and is_valid_date(args.end):
             start = format_date(args.start)
             end = format_date(args.end)
 
-            logger.info("Price history dates set: %s to %s", args.start, args.end)
+            logger.info("Price estimate dates set: %s to %s", args.start, args.end)
 
             # Generate a list of dates between start and end (inclusive)
             date_index = [
