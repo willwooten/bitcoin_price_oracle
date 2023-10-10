@@ -1,6 +1,6 @@
 """Main class for calculating estimated daily price."""
-from asyncio import create_task, gather
 import dataclasses
+from asyncio import create_task, gather
 from typing import Dict, List, Literal, Tuple
 
 from src.bins import PriceBins
