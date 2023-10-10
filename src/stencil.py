@@ -1,7 +1,7 @@
 """Main class for calculating estimated daily price."""
 from asyncio import create_task, gather
 import dataclasses
-from typing import Dict, List, Literal
+from typing import Dict, List, Literal, Tuple
 
 from src.bins import PriceBins
 from src.logger import init_logger
@@ -174,6 +174,9 @@ class Stencil:
         This method iterates through the specified range of slides,
         calculates slide scores, and updates the best slide and its
         score accordingly.
+
+        :return: The estimated USD price for the best slide.
+        :rtype: float
         """
         for slide in range(self.min_slide, self.max_slide):
             slide_score = self._calculate_slide_score(slide)
@@ -215,13 +218,16 @@ class Stencil:
         )
         return slide_score
 
-    async def _get_neighbor_scores(self) -> None:
+    async def _get_neighbor_scores(self) -> Tuple[float, int]:
         """
         Get the scores of the neighboring slides.
 
         This method calculates the scores of the neighboring slides (up and down),
         determines the best neighbor based on the higher score, and computes the
         USD price estimation for the best neighbor.
+
+        :return: A tuple containing the score of the best neighbor and its USD price.
+        :rtype: tuple[float, float]
         """
         # Find best slide neighbor (either up or down)
         neighbor_up_score = self._calculate_neighbor_score("up")
@@ -270,7 +276,7 @@ class Stencil:
 
     def _calculate_price_estimate(
         self, btc_in_usd_best: float, neighbor_score: float, btc_in_usd_2nd: float
-    ) -> None:
+    ) -> int:
         """
         Calculate the price estimate.
 
@@ -279,6 +285,16 @@ class Stencil:
         score, and the neighbor's score and the average score. It then
         calculates weights based on these differences and computes the price
         estimate.
+
+        :param btc_in_usd_best: The USD value of 100 BTC for the best slide.
+        :type btc_in_usd_best: float
+        :param neighbor_score: The score of the neighboring slide.
+        :type neighbor_score: float
+        :param btc_in_usd_2nd: The USD value of 100 BTC for the second best slide.
+        :type btc_in_usd_2nd: float
+
+        :return: The calculated price estimate.
+        :rtype: int
         """
         # Calculate average score and differences
         avg_score = self.total_score / self.number_of_scores
