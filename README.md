@@ -2,7 +2,7 @@
 
 This Python program estimates the daily USD price of Bitcoin using nothing except a Bitcoin Core node.
 
-It is an adaptation of the script written by [SteveSimple](https://twitter.com/SteveSimple) at [utxo.live](https://utxo.live/oracle/).
+It is an adaptation of the script written by [SteveSimple](https://twitter.com/SteveSimple) at [utxo.live](https://utxo.live/oracle/) and available on [GitHub](https://github.com/Unbesteveable/UTXOracle).
 
 ## Enhancements
 * About ~2x faster than original script (in test comparisons). 
