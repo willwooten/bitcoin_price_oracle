@@ -4,7 +4,6 @@ from os import path
 from pathlib import Path
 from unittest.mock import patch
 
-
 sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 from src.config import BitcoinConfig
 from src.exceptions import BitcoinConfigException

@@ -51,7 +51,6 @@ class PriceBins:
         :param price_day_block: The first block on day to get price estimate.
         :type pass_values: int
         """
-
         # inherit from BitcoinDailyPrice
         self.rpc = rpc
         self.price_day_block = price_day_block
@@ -66,9 +65,7 @@ class PriceBins:
         self.number_of_bins = len(self.output_bell_curve_bins)
 
     async def run_price_bins(self):
-        """
-        Run the price bin calculations.
-        """
+        """Run the price bin calculations."""
         await self._get_target_day_blocks()
         self._remove_outlier_amounts()
         self._smooth_round_btc_bins()
@@ -126,7 +123,6 @@ class PriceBins:
             retrieved and parsed for vout amounts. Average is 144 blocks
             per day.
         """
-
         blocks_heights = list(
             range(self.price_day_block - 25, self.price_day_block + 175, 1)
         )

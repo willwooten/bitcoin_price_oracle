@@ -1,10 +1,9 @@
 import sys
-from typing import List
 from os import path
+from typing import List
 from unittest.mock import MagicMock, patch
 
 from pytest import mark
-
 
 sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 from src.config import BitcoinConfig

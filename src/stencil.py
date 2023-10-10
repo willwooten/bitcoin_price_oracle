@@ -69,7 +69,6 @@ class Stencil:
         :param bins: PriceBins object containing information about price bins.
         :type bins: PriceBins
         """
-
         self.bounds = Bounds(
             lower_bound=bins.lower_bound, upper_bound=bins.upper_bound, btc_bound=1401
         )
