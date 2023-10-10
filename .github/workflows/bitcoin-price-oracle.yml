@@ -36,3 +36,11 @@ jobs:
     - name: Run pylint
       run: |
         pylint **/*.py --disable=import-error,too-few-public-methods --ignore-paths=tests --ignore-patterns=__init__
+    - name: Run pydocstyle
+      run: |
+        pydocstyle --match='(?!__init__\.py|^test_.*\.py$)^.*\.py$'
+    - name: Run Coverage
+      run: |
+        coverage run -m pytest
+        coverage report -m --omit="*/test*" --fail-under=80
+        coverage-badge
