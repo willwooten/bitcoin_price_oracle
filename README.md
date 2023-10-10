@@ -18,7 +18,7 @@ It is an adaptation of the script written by [SteveSimple](https://twitter.com/S
 ## bitcoin.conf
 In order to run the script successfully your bitcoin.conf file will need additional settings to handle the amount of async requests on the node.
 
-```python
+```bash
 # Accept command line and JSON-RPC commands.
 server=1
 
