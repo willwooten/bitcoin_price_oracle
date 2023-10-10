@@ -63,7 +63,7 @@ class BitcoinDailyPrice:
             < datetime(2020, 7, 26, 0, 0, 0, tzinfo=timezone.utc).timestamp()
         ):
             raise DailyPriceException(
-                f"The date entered ({self.date_entered}) is before minuimum 2020-07-26..."
+                f"The date entered ({date_entered}) is before minuimum 2020-07-26..."
             )
 
     async def run_estimate_price(self) -> None:
@@ -93,6 +93,8 @@ class BitcoinDailyPrice:
         await bins.run_price_bins()
 
         price_estimate = await Stencil(bins).run_stencil()
+
+        logger.info("Price estimate: %s", price_estimate)
 
     async def _set_current_block(self) -> None:
         """
