@@ -230,28 +230,28 @@ class Stencil:
         :rtype: tuple[float, float]
         """
         # Find best slide neighbor (either up or down)
-        neighbor_up_score = self._calculate_neighbor_score("up")
-        neighbor_down_score = self._calculate_neighbor_score("down")
+        scores = await gather(
+            *[
+                create_task(self._calculate_neighbor_score("up")),
+                create_task(self._calculate_neighbor_score("down")),
+            ]
+        )
 
         # Determine the best neighbor
-        neighbor_score = (
-            neighbor_up_score
-            if neighbor_up_score > neighbor_down_score
-            else neighbor_down_score
-        )
+        neighbor_score = scores[0] if scores[0] > scores[1] else scores[1]
 
         # get best neighbor usd price
         usd100_in_btc_2nd = self.bitcoin_daily_price_values.output_bell_curve_bins[
-            801
-            + self.best_slide
-            + (1 if neighbor_up_score > neighbor_down_score else -1)
+            801 + self.best_slide + (1 if scores[0] > scores[1] else -1)
         ]
 
         btc_in_usd_2nd = 100 / (usd100_in_btc_2nd)
 
         return neighbor_score, btc_in_usd_2nd
 
-    def _calculate_neighbor_score(self, direction: Literal["up", "down"]) -> float:
+    async def _calculate_neighbor_score(
+        self, direction: Literal["up", "down"]
+    ) -> float:
         """
         Calculate the score of the neighboring slide in the specified direction.
 
