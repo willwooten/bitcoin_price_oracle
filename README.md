@@ -13,8 +13,7 @@ It is an adaptation of the script written by [SteveSimple](https://twitter.com/S
 * Gets RPC config from bitcoin.conf file if available in default ~/.bitcoin folder. Accepts environment variables as alternative. 
 * Args allow for getting a range of dates.
 * Creates RPC class for async requests to the node.
-* Creates Oscillator class
-* Creates Stencil class
+* Creates classes for BlockOscillator, PriceBins, and Stencil
 
 ## bitcoin.conf
 In order to run the script successfully your bitcoin.conf file will need additional settings to handle the amount of async requests on the node.
