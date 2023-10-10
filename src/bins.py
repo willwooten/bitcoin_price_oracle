@@ -121,14 +121,15 @@ class PriceBins:
         them for further analysis.
 
         Note:
-            Gets 50 blocks before and 175 blocks after price_day_block
+            Gets 25 blocks before and 175 blocks after price_day_block
             set by oscillator to make sure all blocks on that day are
-            retrieved and parsed for vout amounts.
+            retrieved and parsed for vout amounts. Average is 144 blocks
+            per day.
         """
 
-        blocks_heights = [
-            n for n in range(self.price_day_block - 50, self.price_day_block + 175, 1)
-        ]
+        blocks_heights = list(
+            range(self.price_day_block - 25, self.price_day_block + 175, 1)
+        )
 
         block_hashes = await self.rpc.get_block_hashes(blocks_heights)
 
