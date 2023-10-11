@@ -63,7 +63,8 @@ class BitcoinDailyPrice:
             < datetime(2020, 7, 26, 0, 0, 0, tzinfo=timezone.utc).timestamp()
         ):
             raise DailyPriceException(
-                f"The date entered ({date_entered}) is before minuimum 2020-07-26..."
+                f"The date entered ({date_entered}) \
+                    is before the earliest recommended date of 2020-07-26..."
             )
 
     async def run_estimate_price(self) -> None:
