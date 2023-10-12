@@ -285,11 +285,11 @@ class Stencil:
         calculates weights based on these differences and computes the price
         estimate.
 
-        :param btc_in_usd_best: The USD value of 100 BTC for the best slide.
+        :param btc_in_usd_best: The estimated btc USD value for the best slide.
         :type btc_in_usd_best: float
         :param neighbor_score: The score of the neighboring slide.
         :type neighbor_score: float
-        :param btc_in_usd_2nd: The USD value of 100 BTC for the second best slide.
+        :param btc_in_usd_2nd: The estimated btc USD value for the second best slide.
         :type btc_in_usd_2nd: float
 
         :return: The calculated price estimate.
