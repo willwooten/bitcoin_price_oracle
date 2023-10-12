@@ -28,13 +28,13 @@ async def main():
 
     Usage:
     1. To estimate the price for a specific date:
-       `python script.py -d YYYY-MM-DD`
+       `python run.py -d YYYY-MM-DD`
 
     2. To estimate the price for a range of dates:
-       `python script.py -s YYYY-MM-DD -e YYYY-MM-DD`
+       `python run.py -s YYYY-MM-DD -e YYYY-MM-DD`
 
     3. To estimate the price for the prior day:
-       `python script.py`
+       `python run.py`
 
     The resulting price estimates are logged.
 
@@ -100,8 +100,8 @@ async def main():
                 for date in date_index
             ]
         )"""
-
-
+        
+               
 if __name__ == "__main__":
     start_time = time()
 
